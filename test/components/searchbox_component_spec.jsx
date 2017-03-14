@@ -7,6 +7,12 @@ import {stub, spy} from 'sinon';
 
 import {unconnected_searchbox_component as SearchBox} from '../../src/components/searchbox';
 
+const fake_onchange_event_with_value = value => ({
+  target: {
+    value
+  }
+});
+
 describe('Layout Component', () => {
   it('renders with no props, default query is empty string', () =>{
     const wrapper = shallow(<SearchBox/>);
@@ -36,17 +42,17 @@ describe('Layout Component', () => {
     expect(error_spy.callCount).to.equal(0);
   });
 
-  it('executes an update_query_search_string callback when the input changes', () => {
-    const update_query_search_string = spy();
-    const wrapper = shallow(<SearchBox query_search_string = 'Toronto' update_query_search_string={update_query_search_string}/>);
-    wrapper.find('input.searchbox').simulate('change', {target: {value: ''}});
-    expect(update_query_search_string.callCount).to.equal(1);
+  it('executes a handle searchbox change callback when the input changes', () => {
+    const handle_searchbox_change = spy();
+    const wrapper = shallow(<SearchBox query_search_string = 'Toronto' handle_searchbox_change={handle_searchbox_change}/>);
+    wrapper.find('input.searchbox').simulate('change', fake_onchange_event_with_value(''));
+    expect(handle_searchbox_change.callCount).to.equal(1);
   });
 
-  it('Throws an error when trying to render with incorrect type for update_query_search_string prop', () => {
+  it('Throws an error when trying to render with incorrect type for handle_searchbox_change prop', () => {
     const error_spy = spy();
     stub(console, 'error', error_spy);
-    shallow(<SearchBox update_query_search_string = {false}/>);
+    shallow(<SearchBox handle_searchbox_change = {false}/>);
     console.error.restore();
     expect(error_spy.callCount).to.equal(1);
   });
