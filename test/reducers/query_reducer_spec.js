@@ -63,6 +63,23 @@ describe('Query Reducer', () => {
     expect(query_reducer(initial_state, action)).to.equal(expected_final_state);
   });
 
+  it('Action of type update query search string will update the query search string even if search_string is empty string', () => {
+    const initial_state = Map({
+      'search_string': 'Toronto'
+    });
+
+    const action = {
+      type: UPDATE_QUERY_SEARCH_STRING,
+      search_string: ''
+    };
+
+    const expected_final_state = Map({
+      'search_string': ''
+    });
+
+    expect(query_reducer(initial_state, action)).to.equal(expected_final_state);
+  });
+
   it('Action of type update query search string will not update the query search string if no new string is provided', () => {
     const initial_state = Map({
       'search_string': 'Toronto'

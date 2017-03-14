@@ -14,7 +14,10 @@ export default (state = default_state, action) => {
   } else {
     switch (action.type) {
       case UPDATE_QUERY_SEARCH_STRING:
-        return state.set('search_string', action.search_string || state.get('search_string'));
+        return state.set(
+          'search_string',
+          action.search_string || action.search_string === '' ? action.search_string : state.get('search_string')
+        );
       default:
         return state;
     }

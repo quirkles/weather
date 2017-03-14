@@ -39,7 +39,7 @@ describe('Layout Component', () => {
   it('executes an update_query_search_string callback when the input changes', () => {
     const update_query_search_string = spy();
     const wrapper = shallow(<SearchBox query_search_string = 'Toronto' update_query_search_string={update_query_search_string}/>);
-    wrapper.find('input.searchbox').simulate('change');
+    wrapper.find('input.searchbox').simulate('change', {target: {value: ''}});
     expect(update_query_search_string.callCount).to.equal(1);
   });
 
