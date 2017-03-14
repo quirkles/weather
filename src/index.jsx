@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
+import configure_store from './store/configure_store';
 import Root from './containers/root';
 
 /**
@@ -10,9 +11,11 @@ import Root from './containers/root';
 
 import './index.scss';
 
+const store = configure_store();
+
 render(
   <AppContainer>
-    <Root/>
+    <Root store={store}/>
   </AppContainer>,
   document.getElementById('app')
 );

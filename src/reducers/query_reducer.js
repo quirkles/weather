@@ -2,7 +2,7 @@ import {Map} from 'immutable';
 
 import {
   UPDATE_QUERY_SEARCH_STRING
-} from '../constants/query_constants'
+} from '../constants/query_constants';
 
 const default_state = Map({
   'search_string': ''
