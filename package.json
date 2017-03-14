@@ -4,7 +4,8 @@
   "description": "app to fetch and display weather forecasts for a city",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "dev": "node server.js",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles \"test/**/*@(.js|.jsx)\""
   },
   "author": "quirkles",
   "license": "ISC",
