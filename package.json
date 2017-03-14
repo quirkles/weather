@@ -4,7 +4,12 @@
   "description": "app to fetch and display weather forecasts for a city",
   "main": "index.js",
   "scripts": {
+    "build": "npm run clean && npm run compile && npm run copydist",
+    "compile": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "clean": "rimraf dist",
+    "copydist": ".\\node_modules\\.bin\\copy .\\src\\static\\* .\\dist\\",
     "dev": "node server.js",
+    "start": "npm run build && cross-env NODE_ENV=production node server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles \"test/**/*@(.js|.jsx)\""
   },
   "author": "quirkles",
