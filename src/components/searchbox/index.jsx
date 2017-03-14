@@ -5,13 +5,13 @@ import {noop} from '../../utils/func_utils';
 const unconnected_searchbox_component = Object.assign(
   ({
   query = '',
-  edit_query = noop
+  update_query_search_string = noop
   }) =>
     <div>
       <input
         type='text'
         value={query}
-        onChange = {edit_query}
+        onChange = {update_query_search_string}
         className='searchbox'
       />
     </div>,

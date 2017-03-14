@@ -28,10 +28,10 @@ describe('Layout Component', () => {
     expect(error_spy.callCount).to.equal(1);
   });
 
-  it('executes an edit query callback when the input changes', () => {
-    const edit_query = spy();
-    const wrapper = shallow(<SearchBox query = 'Toronto' edit_query={edit_query}/>);
+  it('executes an update_query_search_string callback when the input changes', () => {
+    const update_query_search_string = spy();
+    const wrapper = shallow(<SearchBox query = 'Toronto' update_query_search_string={update_query_search_string}/>);
     wrapper.find('input.searchbox').simulate('change');
-    expect(edit_query.callCount).to.equal(1);
+    expect(update_query_search_string.callCount).to.equal(1);
   });
 });
