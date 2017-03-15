@@ -12,7 +12,10 @@ export const unconnected_weather_data_component = Object.assign(
   }) =>
     forecast_items.map && forecast_items.length ?
       <div>
-        <WeatherDataHeader city_data = {city_data}/>
+        <WeatherDataHeader
+          city_name = {city_data.name}
+          country_code = {city_data.country}
+        />
         {forecast_items.map((forecast_item, i) => <ForecastItem key={i} forecast_item={forecast_item}/>)}
       </div> :
       <NoResults/>,
@@ -29,6 +32,6 @@ const map_state_to_props = ({weather_data}) => ({
 });
 
 const connected_weather_data_component =
-  connect()(unconnected_weather_data_component);
+  connect(map_state_to_props)(unconnected_weather_data_component);
 
 export default connected_weather_data_component;

@@ -102,4 +102,7 @@ describe('Weather List', () => {
       expect(error_spy.callCount).to.equal(0);
     });
   });
+
+  describe('forecast item', ()=> {
+  });
 });
