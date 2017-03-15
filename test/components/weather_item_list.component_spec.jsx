@@ -8,18 +8,21 @@ import {stub, spy} from 'sinon';
 import {unconnected_weather_data_component as WeatherData} from '../../src/components/weather_data';
 import NoResults from '../../src/components/weather_data/no_results';
 import WeatherItem from '../../src/components/weather_data/weather_item';
+import WeatherDataHeader from '../../src/components/weather_data/weather_data_header';
 
-describe('Weather List Component', () => {
+describe('Weather List Root Component', () => {
   it('renders with no props, default list is empty, shows no results component', () =>{
     const wrapper = shallow(<WeatherData/>);
     expect(wrapper.find(NoResults)).to.have.length(1);
     expect(wrapper.find(WeatherItem)).to.have.length(0);
+    expect(wrapper.find(WeatherDataHeader)).to.have.length(0);
   });
 
   it('accepts a list of weather items, renders them all, no results isnt rendered', () =>{
     const wrapper = shallow(<WeatherData weather_items={[{}, {}]}/>);
     expect(wrapper.find(NoResults)).to.have.length(0);
     expect(wrapper.find(WeatherItem)).to.have.length(2);
+    expect(wrapper.find(WeatherDataHeader)).to.have.length(1);
   });
 
   it('doesn\'t of invalid propTypes if weather items is an array', () =>{
