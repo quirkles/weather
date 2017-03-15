@@ -1,4 +1,4 @@
-.weekly-summary-component {
+.weekly-summary-pane {
   position: fixed;
   height: 85vh;
   background-color: #fff;
@@ -6,21 +6,21 @@
   bottom: 0;
   transition-property: all;
   transition-duration: 1s;  transition-timing-function: cubic-bezier(1,-0.5,0,1.5);
-  transform: translateY(80vh);
+  transform: translateY(85vh);
   z-index: 101;
   .weekly-summary-toggler {
     position: absolute;
-    right: 0;
+    right: 25px;
     top: -65px;
     width: 65px;
     height: 65px;
-    // background-image: url('../../../img/cancel.png')
-    background-size: 32px 32px;
-    background-repeat: no-repeat;
-    background-position: center;
     cursor: pointer;
+    background: #fff;
+    text-align: center;
+    line-height: 65px;
+    font-weight: 600;
   }
-  & +.user-edit-panel-overlay {
+  & +.weekly-summary-overlay {
     transition-property: background;
     transition-duration: .85s;
     height: 0%;
@@ -28,7 +28,7 @@
   }
   &.open{
     transform: translateY(0);
-    & +.user-edit-panel-overlay {
+    & +.weekly-summary-overlay {
       position: fixed;
       top: 0;
       left: 0;
