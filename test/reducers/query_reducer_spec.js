@@ -7,6 +7,10 @@ import {
   UPDATE_QUERY_SEARCH_STRING
 } from '../../src/constants/query_constants';
 
+import {
+  HANDLE_GET_FORECAST_RESPONSE
+} from '../../src/constants/weather_data_constants';
+
 import query_reducer from '../../src/reducers/query_reducer';
 
 describe('Query Reducer', () => {
@@ -92,6 +96,23 @@ describe('Query Reducer', () => {
 
     const expected_final_state = Map({
       'search_string': 'Toronto'
+    });
+
+    expect(query_reducer(initial_state, action)).to.equal(expected_final_state);
+  });
+
+  it('Sets has_searched to true on HANDLE_GET_FORECAST_RESPONSE', () => {
+    const initial_state = Map({
+      'search_string': 'Toronto'
+    });
+
+    const action = {
+      type: HANDLE_GET_FORECAST_RESPONSE
+    };
+
+    const expected_final_state = Map({
+      'search_string': 'Toronto',
+      'has_searched': true
     });
 
     expect(query_reducer(initial_state, action)).to.equal(expected_final_state);
