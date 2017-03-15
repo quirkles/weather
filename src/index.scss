@@ -2,6 +2,8 @@
 @import "./vendor/bootstrap/scss/_variables.scss";
 @import "./vendor/bootstrap/scss/bootstrap.scss";
 
+@import"./vendor/weather_icons/css/weather-icons.css";
+
 body{
   color: rgba(0,0,0,.87);
   font-size: .875rem;
@@ -9,5 +11,8 @@ body{
   font-family: 'Raleway', sans-serif;
   .serif {
     font-family: 'Alegreya', serif !important;
+  }
+  .b-r {
+    border-right: 1px solid hsla(210,8%,51%,.13);
   }
 }

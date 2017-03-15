@@ -15,18 +15,18 @@ const fake_onchange_event_with_value = value => ({
 
 const fake_enter_keypress = () => ({which: 13});
 
-describe('Layout Component', () => {
+describe('Searchbox Component', () => {
   it('renders with no props, default query is empty string', () =>{
     const wrapper = shallow(<SearchBox/>);
-    expect(wrapper.find('input.searchbox')).to.have.length(1);
+    expect(wrapper.find('input')).to.have.length(1);
     expect(wrapper.find('.submit')).to.have.length(1);
-    expect(wrapper.find('input.searchbox').props().value).to.equal('');
+    expect(wrapper.find('input').props().value).to.equal('');
   });
 
   it('renders with a query string, input value is set to query', () =>{
     const wrapper = shallow(<SearchBox query_search_string='Toronto'/>);
-    expect(wrapper.find('input.searchbox')).to.have.length(1);
-    expect(wrapper.find('input.searchbox').props().value).to.equal('Toronto');
+    expect(wrapper.find('input')).to.have.length(1);
+    expect(wrapper.find('input').props().value).to.equal('Toronto');
   });
 
   it('Throws an error when trying to render with incorrect type for query prop', () => {
@@ -48,7 +48,7 @@ describe('Layout Component', () => {
   it('executes a handle searchbox change callback when the input changes', () => {
     const handle_searchbox_change = spy();
     const wrapper = shallow(<SearchBox query_search_string = 'Toronto' handle_searchbox_change={handle_searchbox_change}/>);
-    wrapper.find('input.searchbox').simulate('change', fake_onchange_event_with_value(''));
+    wrapper.find('input').simulate('change', fake_onchange_event_with_value(''));
     expect(handle_searchbox_change.callCount).to.equal(1);
   });
 
@@ -71,7 +71,7 @@ describe('Layout Component', () => {
   it('executes an search for city callback when the submit button is clicked', () => {
     const search_for_city_on_click = spy();
     const wrapper = shallow(<SearchBox search_for_city_on_click={search_for_city_on_click}/>);
-    wrapper.find('input.searchbox').simulate('click', fake_onchange_event_with_value(''));
+    wrapper.find('input').simulate('click', fake_onchange_event_with_value(''));
     expect(search_for_city_on_click.callCount).to.equal(1);
   });
 
@@ -94,7 +94,7 @@ describe('Layout Component', () => {
   it('executes a search for city on press enter callback when enter is typed into the search bar', () => {
     const search_for_city_on_press_enter = spy();
     const wrapper = shallow(<SearchBox search_for_city_on_press_enter={search_for_city_on_press_enter}/>);
-    wrapper.find('input.searchbox').simulate('click', fake_enter_keypress());
+    wrapper.find('input').simulate('click', fake_enter_keypress());
     expect(search_for_city_on_press_enter.callCount).to.equal(1);
   });
 

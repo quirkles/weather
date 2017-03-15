@@ -1,0 +1,41 @@
+.weekly-summary-component {
+  position: fixed;
+  height: 85vh;
+  background-color: #fff;
+  width: 100vw;
+  bottom: 0;
+  transition-property: all;
+  transition-duration: 1s;  transition-timing-function: cubic-bezier(1,-0.5,0,1.5);
+  transform: translateY(80vh);
+  z-index: 101;
+  .weekly-summary-toggler {
+    position: absolute;
+    right: 0;
+    top: -65px;
+    width: 65px;
+    height: 65px;
+    // background-image: url('../../../img/cancel.png')
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  & +.user-edit-panel-overlay {
+    transition-property: background;
+    transition-duration: .85s;
+    height: 0%;
+    width: 0%;
+  }
+  &.open{
+    transform: translateY(0);
+    & +.user-edit-panel-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background-color: rgba(0,0,0,0.15);
+    }
+  }
+}

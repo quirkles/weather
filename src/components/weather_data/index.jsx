@@ -5,7 +5,7 @@ import NoResults from './no_results';
 import NotSearched from './not_searched';
 import ForecastItem from './forecast_item';
 import WeatherDataHeader from './weather_data_header';
-import {format} from 'date-fp';
+import {format, fromTime} from 'date-fp';
 
 import './weather_data.scss';
 
@@ -16,19 +16,24 @@ export const unconnected_weather_data_component = Object.assign(
     has_searched = false
   }) =>
     forecast_items.map && forecast_items.length ?
-      <div>
+      <div className='weather-data-component'>
         <WeatherDataHeader
           city_name = {city_data.name}
           country_code = {city_data.country}
         />
-          {forecast_items.map((forecast_item, i) => <ForecastItem
-            key={i}
-            summary = {forecast_item.getIn(['weather', 0, 'description'])}
-            date_string = {format('MMMM D YYYY', new Date(forecast_item.get('dt_txt')))}
-            temp = {forecast_item.getIn(['main', 'temp'])}
-            humidity = {forecast_item.getIn(['main', 'humidity' ])}
-            air_pressure = {forecast_item.getIn(['main', 'pressure'])}
-          />)}
+        <div className="weather-item-list-wrapper row">
+          {forecast_items.map((forecast_item, i) =>
+            <ForecastItem
+              key={i}
+              summary = {forecast_item.getIn(['weather', 0, 'description'])}
+              weather_icon = {forecast_item.getIn(['weather', 0, 'icon'])}
+              date_string = {format('MMMM D YYYY', fromTime(forecast_item.get('dt') * 1000))}
+              temp = {forecast_item.getIn(['temp', 'day'])}
+              humidity = {forecast_item.get('humidity')}
+              air_pressure = {forecast_item.get('pressure')}
+            />
+          )}
+        </div>
       </div> :
       has_searched ?
         <NoResults/> :

@@ -150,7 +150,7 @@ describe('Weather List', () => {
   describe('forecast item', ()=> {
     it('Renders with no prop data', () => {
       const wrapper = shallow(<ForecastItem/>);
-      expect(wrapper.find('.forecast-item')).to.have.length(1);
+      expect(wrapper.find('.forecast-item-component')).to.have.length(1);
     });
 
     it('doesn\'t warn of invalid propTypes if summary is a string', () =>{

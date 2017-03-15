@@ -6,7 +6,9 @@ export default Object.assign(
   country_code = null
   }) =>
     city_name ?
-      <h2>{`Showing forecast for ${city_name}: ${country_code || 'N/A'}`}</h2> :
+      <div className='weather-data-header-component'>
+        <h2 className='serif'>{`Showing forecast for ${city_name}: ${country_code || 'N/A'}`}</h2>
+      </div> :
       null,
   {
     propTypes: {
