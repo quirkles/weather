@@ -8,7 +8,9 @@ import './layout.scss';
 const layout = () =>
   <div>
     <SearchBox/>
-    <WeatherData/>
+    <div className="weather-data-wrapper">
+      <WeatherData/>
+    </div>
   </div>;
 
 export default layout;

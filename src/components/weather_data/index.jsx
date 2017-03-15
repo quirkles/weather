@@ -7,6 +7,8 @@ import ForecastItem from './forecast_item';
 import WeatherDataHeader from './weather_data_header';
 import {format} from 'date-fp';
 
+import './weather_data.scss';
+
 export const unconnected_weather_data_component = Object.assign(
   ({
     city_data = {},

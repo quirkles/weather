@@ -17,7 +17,7 @@ export const unconnected_searchbox_component = Object.assign(
     search_for_city_on_press_enter = () => noop
   }) =>
     <div className='searchbox-component row'>
-      <div className='col-lg-10 col-md-12'>
+      <div className='col-xs-10'>
         <div className="searchbox input-group">
           <input
             placeholder='City Name Query'
@@ -29,7 +29,7 @@ export const unconnected_searchbox_component = Object.assign(
           <div className='underline-container'/>
         </div>
       </div>
-      <div className='col-lg-2 col-md-12'>
+      <div className='col-xs-2'>
         <button
         className="btn btn-primary submit"
         onClick={search_for_city_on_click.apply ? search_for_city_on_click(query_search_string) : noop}
