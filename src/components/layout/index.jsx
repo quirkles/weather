@@ -1,12 +1,12 @@
 import React from 'react';
 
 import SearchBox from '../searchbox';
-import WeatherItemList from '../weather_item_list';
+import WeatherData from '../weather_data';
 
 const layout = () =>
   <div>
     <SearchBox/>
-    <WeatherItemList/>
+    <WeatherData/>
   </div>;
 
 export default layout;
