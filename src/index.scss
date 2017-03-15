@@ -1,0 +1,9 @@
+@import "./vendor/bootstrap/scss/_mixins.scss";
+@import "./vendor/bootstrap/scss/_variables.scss";
+@import "./vendor/bootstrap/scss/bootstrap.scss";
+
+body{
+  color: rgba(0,0,0,.87);
+  font-size: .875rem;
+  background-color: #f6fafb;
+}
