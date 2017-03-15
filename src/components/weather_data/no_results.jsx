@@ -1,4 +1,6 @@
 import React from 'react';
 
 export default () =>
-  <div>No results found</div>;
+  <div className='no-results-component'>
+    <h2>No results found</h2>
+  </div>;

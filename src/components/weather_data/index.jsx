@@ -1,22 +1,34 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+
 import NoResults from './no_results';
-import WeatherItem from './weather_item';
+import ForecastItem from './forecast_item';
 import WeatherDataHeader from './weather_data_header';
 
 export const unconnected_weather_data_component = Object.assign(
   ({
-    weather_items = []
+    city_data = {},
+    forecast_items = []
   }) =>
-    weather_items.map && weather_items.length ?
+    forecast_items.map && forecast_items.length ?
       <div>
-        <WeatherDataHeader/>
-        {weather_items.map(weather_item => <WeatherItem weather_item={weather_item}/>)}
+        <WeatherDataHeader city_data = {city_data}/>
+        {forecast_items.map((forecast_item, i) => <ForecastItem key={i} forecast_item={forecast_item}/>)}
       </div> :
       <NoResults/>,
   {
     propTypes: {
-      weather_items: PropTypes.array
+      city_data: PropTypes.object,
+      forecast_items: PropTypes.array
     }
   });
 
-export default unconnected_weather_data_component;
+const map_state_to_props = ({weather_data}) => ({
+  city_data: weather_data.get('city_data').toObject(),
+  forecast_items: weather_data.get('forecast_items').toArray()
+});
+
+const connected_weather_data_component =
+  connect()(unconnected_weather_data_component);
+
+export default connected_weather_data_component;
