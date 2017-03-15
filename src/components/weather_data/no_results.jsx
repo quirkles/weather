@@ -1,6 +1,14 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
-export default () =>
-  <div className='no-results-component'>
-    <h2>No results found</h2>
-  </div>;
+export default Object.assign(
+  ({
+    query_search_string = null
+  }) =>
+    <div className='no-results-component'>
+      <h2>No results found for query: {query_search_string || 'No Query'}</h2>
+    </div>,
+  {
+    propTypes: {
+      query_search_string: PropTypes.string
+    }
+  });

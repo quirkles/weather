@@ -20,5 +20,8 @@ export const fetch_forecast_for_city = ({city, units = 'metric'}) =>
         forecast_items: data.list || [],
         city_data: data.city || {}
       })),
-      error => console.log(error)
+      () => dispatch(handle_get_forecast_response({
+        forecast_items: [],
+        city_data: {}
+      }))
     );

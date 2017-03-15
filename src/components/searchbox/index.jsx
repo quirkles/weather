@@ -9,12 +9,12 @@ import {noop} from '../../utils/func_utils';
 
 export const unconnected_searchbox_component = Object.assign(
   ({
-  query_search_string = '',
-  handle_searchbox_change = noop,
-  search_for_city_on_click = () => noop,
-  search_for_city_on_press_enter = () => noop
+    query_search_string = '',
+    handle_searchbox_change = noop,
+    search_for_city_on_click = () => noop,
+    search_for_city_on_press_enter = () => noop
   }) =>
-    <div>
+    <div className='searchbox-component'>
       <input
         type = 'text'
         value = {query_search_string}

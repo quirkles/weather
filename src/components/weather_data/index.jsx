@@ -2,13 +2,16 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 import NoResults from './no_results';
+import NotSearched from './not_searched';
 import ForecastItem from './forecast_item';
 import WeatherDataHeader from './weather_data_header';
+import {format} from 'date-fp';
 
 export const unconnected_weather_data_component = Object.assign(
   ({
     city_data = {},
-    forecast_items = []
+    forecast_items = [],
+    has_searched = false
   }) =>
     forecast_items.map && forecast_items.length ?
       <div>
@@ -16,19 +19,30 @@ export const unconnected_weather_data_component = Object.assign(
           city_name = {city_data.name}
           country_code = {city_data.country}
         />
-        {forecast_items.map((forecast_item, i) => <ForecastItem key={i} forecast_item={forecast_item}/>)}
+          {forecast_items.map((forecast_item, i) => <ForecastItem
+            key={i}
+            summary = {forecast_item.getIn(['weather', 0, 'description'])}
+            date_string = {format('MMMM D YYYY', new Date(forecast_item.get('dt_txt')))}
+            temp = {forecast_item.getIn(['main', 'temp'])}
+            humidity = {forecast_item.getIn(['main', 'humidity' ])}
+            air_pressure = {forecast_item.getIn(['main', 'pressure'])}
+          />)}
       </div> :
-      <NoResults/>,
+      has_searched ?
+        <NoResults/> :
+        <NotSearched/>,
   {
     propTypes: {
       city_data: PropTypes.object,
-      forecast_items: PropTypes.array
+      forecast_items: PropTypes.array,
+      has_searched: PropTypes.bool
     }
   });
 
-const map_state_to_props = ({weather_data}) => ({
+const map_state_to_props = ({query, weather_data}) => ({
   city_data: weather_data.get('city_data').toObject(),
-  forecast_items: weather_data.get('forecast_items').toArray()
+  forecast_items: weather_data.get('forecast_items').toArray(),
+  has_searched: query.get('has_searched', false)
 });
 
 const connected_weather_data_component =

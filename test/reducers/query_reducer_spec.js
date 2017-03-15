@@ -12,7 +12,8 @@ import query_reducer from '../../src/reducers/query_reducer';
 describe('Query Reducer', () => {
   it('Sets state to default if given null as initial state and no action', () => {
     const expected_final_state = Map({
-      'search_string': ''
+      'search_string': '',
+      has_searched: false
     });
 
     expect(query_reducer()).to.equal(expected_final_state);
