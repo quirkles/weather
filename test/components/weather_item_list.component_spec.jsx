@@ -51,13 +51,14 @@ describe('Weather List', () => {
     });
 
     it('warns of invalid propTypes if weather items is not an array', () =>{
-    const error_spy = spy();
-    stub(console, 'error', error_spy);
-    shallow(<WeatherData forecast_items='items'/>);
-    console.error.restore();
-    expect(error_spy.callCount).to.equal(1);
+      const error_spy = spy();
+      stub(console, 'error', error_spy);
+      shallow(<WeatherData forecast_items='items'/>);
+      console.error.restore();
+      expect(error_spy.callCount).to.equal(1);
+    });
   });
-  });
+
   describe('No Results component', () => {
     it('Renders ok, with header', () => {
       const wrapper = shallow(<NoResults/>);
