@@ -12,5 +12,6 @@
   width: 100%;
   height: calc(100vh - 150px);
   padding: 25px;
-  overflow: auto; 
+  overflow-y: auto;
+  overflow-x: hidden; 
 }

@@ -5,7 +5,7 @@ import {expect} from 'chai';
 import { shallow } from 'enzyme';
 import {stub, spy} from 'sinon';
 
-import WeeklySummary from '../../src/components/weekly_summary';
+import {unconnected_weekly_summary_component as WeeklySummary} from '../../src/components/weekly_summary';
 
 describe('Weekly summary component', () => {
   it('Renders with no props, had the no-data class when given no data', () => {
