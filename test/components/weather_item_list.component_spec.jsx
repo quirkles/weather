@@ -65,4 +65,41 @@ describe('Weather List', () => {
       expect(wrapper.find('.no-results-component h2')).to.have.length(1);
     });
   });
+
+  describe('Weather data header', () => {
+    it('Returns null if passed no props', () => {
+      const wrapper = shallow(<WeatherDataHeader/>);
+      expect(wrapper.children()).to.have.length(0);
+    });
+
+    it('Renders properly when given city and country', () => {
+      const wrapper = shallow(<WeatherDataHeader city_name='Toronto' country_code='CA'/>);
+      expect(wrapper.find('h2')).to.have.length(1);
+      expect(wrapper.find('h2').text().trim()).to.have.equal('Showing forecast for Toronto: CA');
+    });
+
+    it('warns of invalid propTypes if city_name is not an array', () =>{
+      const error_spy = spy();
+      stub(console, 'error', error_spy);
+      shallow(<WeatherDataHeader city_name={false}/>);
+      console.error.restore();
+      expect(error_spy.callCount).to.equal(1);
+    });
+
+    it('doesn\'t warn of invalid propTypes if city_name is string', () =>{
+      const error_spy = spy();
+      stub(console, 'error', error_spy);
+      shallow(<WeatherDataHeader city_name='good'/>);
+      console.error.restore();
+      expect(error_spy.callCount).to.equal(0);
+    });
+
+    it('doesn\'t warn of invalid propTypes if country_code is string', () =>{
+      const error_spy = spy();
+      stub(console, 'error', error_spy);
+      shallow(<WeatherDataHeader country_code='good'/>);
+      console.error.restore();
+      expect(error_spy.callCount).to.equal(0);
+    });
+  });
 });
