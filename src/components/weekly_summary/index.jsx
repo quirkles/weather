@@ -109,7 +109,9 @@ export const unconnected_weekly_summary_component = Object.assign(
         className='weekly-summary-toggler serif bg-warning'
         onClick={toggle_weekly_summary}
       >
-        {is_open === true ? 'X' : '^'}
+        <div>
+          {is_open === true ? 'X' : '^'}
+        </div>
       </div>
     </div>
     <div
