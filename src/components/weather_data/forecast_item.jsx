@@ -2,37 +2,39 @@ import React, {PropTypes} from 'react';
 
 const get_color_class_from_weather_icon = weather_icon => {
   return ({
-    '01d': 'warning',
-    '02d': 'warning',
-    '03d': 'info',
-    '04d': 'info',
-    '09d': 'info',
-    '10d': 'info',
-    '11d': 'danger',
-    '13d': 'primary',
-    '50d': 'primary'
-  }[weather_icon || 'mist']);
+    '01': 'warning',
+    '02': 'warning',
+    '03': 'info',
+    '04': 'info',
+    '09': 'info',
+    '10': 'info',
+    '11': 'danger',
+    '13': 'primary',
+    '50': 'primary'
+  }[weather_icon.substring(0, 2) || '01']);
 };
 
 const get_icon_class_from_weather_icon = weather_icon => {
   return ({
-    '01d': 'wi-day-sunny',
-    '02d': 'wi-day-sunny-overcast',
-    '03d': 'wi-day-cloudy',
-    '04d': 'wi-cloudy',
-    '09d': 'wi-showers',
-    '10d': 'wi-rain',
-    '11d': 'wi-thunderstorm',
-    '13d': 'wi-snow',
-    '50d': 'wi-fog'
-  }[weather_icon || 'mist']);
+    '01': 'wi-day-sunny',
+    '02': 'wi-day-sunny-overcast',
+    '03': 'wi-day-cloudy',
+    '04': 'wi-cloudy',
+    '09': 'wi-showers',
+    '10': 'wi-rain',
+    '11': 'wi-thunderstorm',
+    '13': 'wi-snow',
+    '50': 'wi-fog'
+  }[weather_icon.substring(0, 2) || '01']);
 };
 
 export default Object.assign(
   ({
     summary = null,
     date_string = null,
-    temp = null,
+    temp_day = null,
+    temp_min = null,
+    temp_max = null,
     humidity = null,
     air_pressure = null,
     weather_icon = null
@@ -41,7 +43,21 @@ export default Object.assign(
     <div>
       <div className={`header-container bg-${get_color_class_from_weather_icon(weather_icon)}`}></div>
       <div className="summary-container">
-        <i className={`weather-icon text-${get_color_class_from_weather_icon(weather_icon)} wi ${get_icon_class_from_weather_icon(weather_icon)}`}></i>
+        <div className='min-temp'>
+          <p>
+            <span className={`text-${get_color_class_from_weather_icon(weather_icon)}`}>{temp_min}C</span>
+            Min
+          </p>
+        </div>
+        <i
+          className={`weather-icon text-${get_color_class_from_weather_icon(weather_icon)} wi ${get_icon_class_from_weather_icon(weather_icon)}`}
+        />
+        <div className='max-temp'>
+          <p>
+            <span className={`text-${get_color_class_from_weather_icon(weather_icon)}`}>{temp_max}C</span>
+            Max
+          </p>
+        </div>
         <p>
           {summary || 'No description available'}
         </p>
@@ -58,7 +74,7 @@ export default Object.assign(
         </div>
         <div className="col-xs-12 col-sm-4 b-r">
           <a>
-            <strong>{temp || 'N/A'} C</strong>
+            <strong>{temp_day || 'N/A'} C</strong>
             <span>Temperature</span>
           </a>
         </div>

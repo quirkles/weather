@@ -1,12 +1,12 @@
-.weather-data-component {
-  .no-results-component, .not-searched-component {
-    text-align: center;
-    margin: 20% 5% 0;
-    h2 {
-      font-size: 72px;
-      line-height: 82px;
-    }
+.no-results-component, .not-searched-component {
+  text-align: center;
+  margin: 20% 5% 0;
+  h2 {
+    font-size: 72px;
+    line-height: 82px;
   }
+}
+.weather-data-component {
 
   .weather-data-header-component {
     text-align: center;
@@ -38,6 +38,19 @@
           transition: all 0.3s ease-in-out 0s;
         }
         .summary-container {
+          .min-temp, .max-temp {
+            display: inline-block;
+            height: 64px;
+            line-height: 64px;
+            margin: 0 25px;
+            vertical-align: top;
+            font-size: 12px;
+            span {
+              font-weight: 600;
+              font-size: 24px;
+              margin-right: 5px;
+            }
+          }
           padding: 1.5rem;
           text-align: center;
           padding-bottom: .25em;

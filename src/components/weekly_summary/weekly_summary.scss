@@ -44,4 +44,16 @@
       transform: translateY(100%)
     }
   }
+
+  .charts-wrapper {
+    padding-top: 2em;
+    max-height: 85vh;
+    overflow-y: auto;
+    .row {
+      margin: 0;
+      .info-pane {
+        text-align: center;
+      }
+    }
+  }
 }
