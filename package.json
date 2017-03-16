@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "app to fetch and display weather forecasts for a city",
   "main": "index.js",
+  "repository": "https://github.com/quirkles/weather",
   "scripts": {
     "build": "npm run clean && npm run compile && npm run copydist",
     "compile": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
