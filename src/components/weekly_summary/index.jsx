@@ -12,26 +12,26 @@ import {toggle_weekly_summary as do_toggle} from '../../actions/weather_data_act
 
 import './weekly_summary.scss';
 
-const get_temp_data_from_weekly_data = weekly_data => weekly_data.map(({temp, dt}) => ({
+const get_temp_data_from_weekly_data = weekly_data => weekly_data.map && weekly_data.map(({temp = {}, dt}) => ({
     day: format('ddd', fromTime(dt * 1000)),
     'day-temp': temp.day,
     'temp-max': temp.max,
     'temp-min': temp.min
   }));
 
-const get_pressure_data_from_weekly_data = weekly_data => weekly_data.map(({pressure, dt}) => ({
+const get_pressure_data_from_weekly_data = weekly_data => weekly_data.map && weekly_data.map(({pressure, dt}) => ({
     day: format('ddd', fromTime(dt * 1000)),
     pressure
   }));
 
-const get_humidity_data_from_weekly_data = weekly_data => weekly_data.map(({humidity, dt}) => ({
+const get_humidity_data_from_weekly_data = weekly_data => weekly_data.map && weekly_data.map(({humidity, dt}) => ({
     day: format('ddd', fromTime(dt * 1000)),
     humidity
   }));
 
 export const unconnected_weekly_summary_component = Object.assign(
   ({
-    weekly_data = null,
+    weekly_data = [],
     is_open = false,
     toggle_weekly_summary = noop
   }) =>
@@ -47,9 +47,9 @@ export const unconnected_weekly_summary_component = Object.assign(
         <div className='row'>
           <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Temperature Chart</h2>
-            <p>High: {weekly_data.reduce((highest, current) => Math.max(highest, current.temp.max), Number.NEGATIVE_INFINITY)}</p>
-            <p>Low: {weekly_data.reduce((lowest, current) => Math.min(lowest, current.temp.min), Number.POSITIVE_INFINITY)}</p>
-            <p>Average: {weekly_data.reduce((total, current) => total + (current.temp.max - current.temp.min), 0) / weekly_data.length}</p>
+            <p>High: {weekly_data.reduce && weekly_data.reduce((highest, {temp = {}}) => Math.max(highest, temp.max), Number.NEGATIVE_INFINITY)}</p>
+            <p>Low: {weekly_data.reduce && weekly_data.reduce((lowest, {temp = {}}) => Math.min(lowest, temp.min), Number.POSITIVE_INFINITY)}</p>
+            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, {temp = {}}) => total + (temp.max - temp.min), 0) / weekly_data.length}</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart
@@ -69,7 +69,7 @@ export const unconnected_weekly_summary_component = Object.assign(
           </div>
           <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Pressure Chart</h2>
-            <p>Average: {weekly_data.reduce((total, current) => total + current.pressure, 0) / weekly_data.length} hPa</p>
+            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, current) => total + current.pressure, 0) / weekly_data.length} hPa</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart
@@ -87,7 +87,7 @@ export const unconnected_weekly_summary_component = Object.assign(
           </div>
            <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Humidity Chart</h2>
-            <p>Average: {weekly_data.reduce((total, current) => total + current.humidity, 0) / weekly_data.length} %</p>
+            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, current) => total + current.humidity, 0) / weekly_data.length} %</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart

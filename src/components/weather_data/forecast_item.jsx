@@ -11,7 +11,7 @@ const get_color_class_from_weather_icon = weather_icon => {
     '11': 'danger',
     '13': 'primary',
     '50': 'primary'
-  }[weather_icon.substring(0, 2) || '01']);
+  }[weather_icon.substring(0, 2)]);
 };
 
 const get_icon_class_from_weather_icon = weather_icon => {
@@ -25,7 +25,7 @@ const get_icon_class_from_weather_icon = weather_icon => {
     '11': 'wi-thunderstorm',
     '13': 'wi-snow',
     '50': 'wi-fog'
-  }[weather_icon.substring(0, 2) || '01']);
+  }[weather_icon.substring(0, 2)]);
 };
 
 export default Object.assign(
@@ -37,7 +37,7 @@ export default Object.assign(
     temp_max = null,
     humidity = null,
     air_pressure = null,
-    weather_icon = null
+    weather_icon = ''
   }) =>
   <div className="col-xl-4 col-lg-6 col-md-12 forecast-item-component">
     <div>
