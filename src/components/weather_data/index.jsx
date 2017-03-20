@@ -27,12 +27,13 @@ export const unconnected_weather_data_component = Object.assign(
               key={i}
               summary = {forecast_item.getIn(['weather', 0, 'description'])}
               weather_icon = {forecast_item.getIn(['weather', 0, 'icon'])}
-              date_string = {format('dddd MMMM D YYYY', fromTime(forecast_item.get('dt') * 1000))}
+              date_string = {format('MMMM D YYYY', fromTime(forecast_item.get('dt') * 1000))}
+              day_string = {format('dddd', fromTime(forecast_item.get('dt') * 1000))}
               temp_day = {forecast_item.getIn(['temp', 'day'])}
               temp_min = {forecast_item.getIn(['temp', 'min'])}
               temp_max = {forecast_item.getIn(['temp', 'max'])}
               humidity = {forecast_item.get('humidity')}
-              air_pressure = {forecast_item.get('pressure')}
+              air_pressure = {Math.floor(forecast_item.get('pressure'))}
             />
           )}
         </div>

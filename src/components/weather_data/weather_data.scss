@@ -63,15 +63,21 @@
             transition: all 0.5s ease-in-out;
             margin-bottom: 15px;
           }
+          strong {
+            font-weight: 600;
+            width: 75%;
+            border-top: 2px dashed #ddd;
+            margin-bottom: 25px;
+            padding-top: 10px;
+            display: block;
+            margin: 0 auto;
+          }
           small {
-            border-top: 1px solid #ddd;
             font-size: .8rem;
             font-style: italic;
             color: inherit!important;
             opacity: .6;
             margin-top: 10px;
-            margin-bottom: 25px;
-            padding-top: 10px;
             display: block;
           }
         }
@@ -96,8 +102,11 @@
               strong {
                 font-size: 32px;
               }
-              * {
+              >* {
                 display: block;
+                span {
+                  font-size: x-small;
+                }
               }
             }
           }

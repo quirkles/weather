@@ -31,6 +31,7 @@ const get_icon_class_from_weather_icon = weather_icon => {
 export default Object.assign(
   ({
     summary = null,
+    day_string = null,
     date_string = null,
     temp_day = null,
     temp_min = null,
@@ -61,6 +62,9 @@ export default Object.assign(
         <p>
           {summary || 'No description available'}
         </p>
+        <strong className={`text-${get_color_class_from_weather_icon(weather_icon)}`}>
+          {day_string || 'Unknown Day'}
+        </strong>
         <small>
           {date_string || 'Unkown Date'}
         </small>
@@ -68,19 +72,19 @@ export default Object.assign(
       <div className={`row bg-${get_color_class_from_weather_icon(weather_icon)}`}>
         <div className="col-xs-12 col-sm-4 b-r">
           <a className="p-y block text-center">
-            <strong className="block">{humidity || humidity === 0 ? humidity : 'N/A'} %</strong>
+            <strong className="block">{humidity || humidity === 0 ? humidity : 'N/A'} <span>%</span></strong>
             <span className="block">Humidity</span>
           </a>
         </div>
         <div className="col-xs-12 col-sm-4 b-r">
           <a>
-            <strong>{temp_day || 'N/A'} C</strong>
+            <strong>{temp_day || 'N/A'} <span>C</span></strong>
             <span>Temperature</span>
           </a>
         </div>
         <div className="col-xs-12 col-sm-4">
           <a>
-            <strong>{air_pressure || 'N/A'} hPa</strong>
+            <strong>{air_pressure || 'N/A'} <span>hPa</span></strong>
             <span>Air pressure</span>
           </a>
         </div>
