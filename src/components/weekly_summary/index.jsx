@@ -38,7 +38,7 @@ export const unconnected_weekly_summary_component = Object.assign(
   <div className='weekly-summary-component'>
     <div
       className={classnames(
-        'weekly-summary-pane bg-warning', {
+        'weekly-summary-pane bg-info', {
            'open': is_open === true,
            'no-data': !(weekly_data && weekly_data.length && weekly_data.map)
          })}
@@ -47,9 +47,18 @@ export const unconnected_weekly_summary_component = Object.assign(
         <div className='row'>
           <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Temperature Chart</h2>
-            <p>High: {weekly_data.reduce && weekly_data.reduce((highest, {temp = {}}) => Math.max(highest, temp.max), Number.NEGATIVE_INFINITY)}</p>
-            <p>Low: {weekly_data.reduce && weekly_data.reduce((lowest, {temp = {}}) => Math.min(lowest, temp.min), Number.POSITIVE_INFINITY)}</p>
-            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, {temp = {}}) => total + (temp.max - temp.min), 0) / weekly_data.length}</p>
+            <p>High: {
+              weekly_data.reduce &&
+              weekly_data.reduce((highest, {temp = {}}) => Math.max(highest, temp.max), Number.NEGATIVE_INFINITY)
+            }</p>
+            <p>Low: {
+              weekly_data.reduce &&
+              weekly_data.reduce((lowest, {temp = {}}) => Math.min(lowest, temp.min), Number.POSITIVE_INFINITY)
+            }</p>
+            <p>Average: {
+              weekly_data.reduce &&
+              Math.floor(weekly_data.reduce((total, {temp = {}}) => total + (temp.max - temp.min), 0) / weekly_data.length)
+            }</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart
@@ -63,13 +72,16 @@ export const unconnected_weekly_summary_component = Object.assign(
               <Tooltip/>
               <Legend />
               <Line type="monotone" dataKey="day-temp" stroke="#4BC0C0"/>
-              <Line type="monotone" dataKey="temp-min" stroke="#2196f3"/>
+              <Line type="monotone" dataKey="temp-min" stroke="#fff"/>
               <Line type="monotone" dataKey="temp-max" stroke="#ef193c"/>
             </LineChart>
           </div>
           <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Pressure Chart</h2>
-            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, current) => total + current.pressure, 0) / weekly_data.length} hPa</p>
+            <p>Average: {
+              weekly_data.reduce &&
+              Math.floor(weekly_data.reduce((total, current) => total + current.pressure, 0) / weekly_data.length)
+            } hPa</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart
@@ -87,7 +99,10 @@ export const unconnected_weekly_summary_component = Object.assign(
           </div>
            <div className="col-lg-6 col-md-12 info-pane">
             <h2>Weekly Humidity Chart</h2>
-            <p>Average: {weekly_data.reduce && weekly_data.reduce((total, current) => total + current.humidity, 0) / weekly_data.length} %</p>
+            <p>Average: {
+              weekly_data.reduce &&
+              Math.floor(weekly_data.reduce((total, current) => total + current.humidity, 0) / weekly_data.length)
+            } %</p>
           </div>
           <div className="col-lg-6 col-md-12">
             <LineChart
@@ -106,11 +121,16 @@ export const unconnected_weekly_summary_component = Object.assign(
         </div>
       </div>
       <div
-        className='weekly-summary-toggler serif bg-warning'
+        className='weekly-summary-toggler serif bg-info'
         onClick={toggle_weekly_summary}
       >
         <div>
-          {is_open === true ? 'X' : '^'}
+          {is_open === true ?
+            <div className='animate-rotate'>X</div> :
+            <div>
+              <span>Weekly Summary </span><div className='animate-rotate'>^</div>
+            </div>
+          }
         </div>
       </div>
     </div>

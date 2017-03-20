@@ -5,7 +5,7 @@
   width: 100vw;
   bottom: 0;
   transition-property: all;
-  transition-duration: 1s;  transition-timing-function: cubic-bezier(1,-0.5,0,1.5);
+  transition: all 0.8s ease-in-out, width 0.2s ease-in-out;
   transform: translateY(calc(95vh - 10px));
   z-index: 101;
   .weekly-summary-toggler {
@@ -13,16 +13,21 @@
     transition: all 0.5s ease-in-out;
     position: absolute;
     font-size: 48px;
-    color: #000 !important;
     right: 25px;
     top: -64px;
-    width: 65px;
+    width: 220px;
     height: 65px;
     cursor: pointer;
     text-align: center;
     line-height: 65px;
     font-weight: 600;
-    div {
+    overflow: hidden;
+    span {
+      font-size: 22px;
+      vertical-align: bottom;
+    }
+    div.animate-rotate{
+      display: inline-block;
       -webkit-animation: rotation 3s infinite linear;
     }
   }
@@ -45,6 +50,7 @@
     }
     .weekly-summary-toggler {
       color: #ef193c !important;
+      width: 65px;
     }
   }
   &.no-data {

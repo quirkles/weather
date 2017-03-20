@@ -4,10 +4,10 @@ const get_color_class_from_weather_icon = weather_icon => {
   return ({
     '01': 'warning',
     '02': 'warning',
-    '03': 'info',
-    '04': 'info',
-    '09': 'info',
-    '10': 'info',
+    '03': 'success',
+    '04': 'success',
+    '09': 'success',
+    '10': 'danger',
     '11': 'danger',
     '13': 'primary',
     '50': 'primary'
