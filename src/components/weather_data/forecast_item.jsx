@@ -40,7 +40,7 @@ export default Object.assign(
     air_pressure = null,
     weather_icon = ''
   }) =>
-  <div className="col-xl-4 col-lg-6 col-md-12 forecast-item-component">
+  <div className="col-xl-4 col-md-6 forecast-item-component">
     <div>
       <div className={`header-container bg-${get_color_class_from_weather_icon(weather_icon)}`}></div>
       <div className="summary-container">

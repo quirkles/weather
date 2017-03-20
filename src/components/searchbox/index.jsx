@@ -13,11 +13,10 @@ export const unconnected_searchbox_component = Object.assign(
   ({
     query_search_string = '',
     handle_searchbox_change = noop,
-    search_for_city_on_click = () => noop,
     search_for_city_on_press_enter = () => noop
   }) =>
     <div className='searchbox-component row'>
-      <div className='col-xs-10'>
+      <div className='col-xs-12'>
         <div className="searchbox input-group">
           <input
             placeholder='City Name Query'
@@ -28,12 +27,6 @@ export const unconnected_searchbox_component = Object.assign(
           />
           <div className='underline-container'/>
         </div>
-      </div>
-      <div className='col-xs-2'>
-        <button
-        className="btn btn-primary submit"
-        onClick={search_for_city_on_click.apply ? search_for_city_on_click(query_search_string) : noop}
-        >Search</button>
       </div>
     </div>,
   {
@@ -55,7 +48,6 @@ export const unconnected_searchbox_component = Object.assign(
     const fetch_forecast_for_city_action = bindActionCreators(fetch_forecast_for_city, dispatch);
     return {
       handle_searchbox_change: e => update_query_search_string_action(e.target.value),
-      search_for_city_on_click: city => () => fetch_forecast_for_city_action({city}),
       search_for_city_on_press_enter: city => e => e.which === 13 && fetch_forecast_for_city_action({city})
     };
   };

@@ -19,13 +19,11 @@ describe('Searchbox Component', () => {
   it('renders with no props, default query is empty string', () =>{
     const wrapper = shallow(<SearchBox/>);
     expect(wrapper.find('input')).to.have.length(1);
-    expect(wrapper.find('.submit')).to.have.length(1);
     expect(wrapper.find('input').props().value).to.equal('');
   });
 
   it('renders with a query string, input value is set to query', () =>{
     const wrapper = shallow(<SearchBox query_search_string='Toronto'/>);
-    expect(wrapper.find('input')).to.have.length(1);
     expect(wrapper.find('input').props().value).to.equal('Toronto');
   });
 
@@ -66,13 +64,6 @@ describe('Searchbox Component', () => {
     shallow(<SearchBox handle_searchbox_change = {() => {}}/>);
     console.error.restore();
     expect(error_spy.callCount).to.equal(0);
-  });
-
-  it('executes an search for city callback when the submit button is clicked', () => {
-    const search_for_city_on_click = spy();
-    const wrapper = shallow(<SearchBox search_for_city_on_click={search_for_city_on_click}/>);
-    wrapper.find('input').simulate('click', fake_onchange_event_with_value(''));
-    expect(search_for_city_on_click.callCount).to.equal(1);
   });
 
   it('Throws an error when trying to render with incorrect type for search_for_city_on_click prop', () => {
